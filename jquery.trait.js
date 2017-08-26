@@ -1,4 +1,5 @@
 /**
+ * jquery-trait
  * 
  * developed on jquery-3.2.1.js
  */
