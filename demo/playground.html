@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="playground.css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="../jquery.trait.js"></script>
+</head>
+<body>
+
+<p><button type="button" data-trait-connect="#popup1">Drop1</button></p>
+<p style="text-align:right;"><button type="button" data-trait-connect="#popup1">Drop2</button></p>
+<p><button type="button" data-trait-connect="#toast1">Success!</button><button type="button" data-trait-connect="#toast2">Failure!</button></p>
+<p><a href="javascript:void(0)" data-trait-connect="#modal1">Modal</a> <a href="javascript:void(0)" data-trait-connect="#drawer">Drawer</a></p>
+<div>
+<label><input type="checkbox" data-trait-connect=".expand1">Expand</label><br>
+<div class="expand-pane expand1 hidden" data-trait="expand.height">
+<p>Lorem ipsum blah blah.</p>
+</div>
+</div>
+<div>
+<label><input type="checkbox" data-trait-connect=".expand2">Expand2</label><br>
+<div class="expand-pane expand2 hidden" data-trait="expand.height">
+<p>Lorem ipsum blah blah.</p>
+</div>
+</div>
+
+<select data-trait-connect=".optional">
+<option selected>OPTION 1</option>
+<option>OPTION 2</option>
+</select><br>
+<div class="optional" data-trait="expandGroup.height">
+<div class="expand-pane expand3" id="optional1"><p>OPTIONAL 1</p></div>
+<div class="expand-pane expand3 hidden" id="optional2"><p>OPTIONAL 2<br>OK<br>OK</p></div>
+</div>
+
+<div data-trait="expandGroup.parallel.height" class="accordion">
+<label style="display:block;"><input type="radio" name="x" id="radio1" data-trait-connect=".accordion" checked>ENTRY 1</label>
+<div class="expand-pane">
+<p>ABC</p>
+</div>
+<label style="display:block;"><input type="radio" name="x" id="radio2" data-trait-connect=".accordion">ENTRY 2</label>
+<div class="expand-pane hidden">
+<p>DEF<br>HIJ</p>
+</div>
+</div><!-- /.accordion -->
+
+<p style="position:absolute;bottom:1rem"><button type="button" data-trait-connect="#popup1">Drop3</button></p>
+<div style="position:absolute;bottom:1rem;right:1rem;"><button type="button" data-trait-connect="#popup1">Drop4</button></div>
+<button class="fab UShadow2" id="theFab" data-trait-connect="#modal3">GO</button>
+
+<div class="overlay1 overlay hidden"></div><!-- /.overlay1 -->
+<div class="panel panel1 hidden UShadow1" id="modal1" data-trait="modal" data-trait-overlay=".overlay1">
+<div class="panel-header">モーダル1</div>
+<div class="panel-body">
+<p>あいうおえ</p>
+</div>
+<div class="panel-footer">
+<button class="link" type="button" data-trait-connect="#modal1">CLOSE</button>
+<button class="link" type="button" data-trait-connect="#modal2">STACK</button>
+<button class="link" type="button" data-trait-connect="#modal1, #modal2">SWITCH</button>
+</div>
+</div><!-- /.panel1 -->
+<div class="overlay2 overlay hidden"></div><!-- /.overlay2 -->
+<div class="panel panel2 hidden UShadow1" id="modal2" style="z-index:40;" data-trait="modal" data-trait-overlay=".overlay2">
+<div class="panel-header">モーダル2</div>
+<div class="panel-body">
+<p>かきくこえ</p>
+</div>
+<div class="panel-footer">
+<button class="link" type="button" data-trait-connect="#modal2">OK</button>
+</div>
+</div><!-- /.panel2 -->
+<div class="overlay3 hidden"></div><!-- /.overlay3 -->
+<div class="panel panel3 hidden UShadow1" id="modal3" style="z-index:40;" data-trait="modal" data-trait-overlay=".overlay3">
+<div class="panel-header">モーダル3</div>
+<div class="panel-body">
+<p>ぽっっぽｐ</p>
+</div>
+<div class="panel-footer">
+<button class="link" type="button" data-trait-connect="#modal3">OK</button>
+</div>
+</div><!-- /.panel3 -->
+<div class="overlayD overlay hidden"></div><!-- /.overlayD -->
+<div class="drawer hidden UShadow2" id="drawer" style="z-index:100;" data-trait="modal" data-trait-overlay=".overlayD">
+<ul>
+<li><a href="javascript:void(0)">LINK1</a></li>
+<li><a href="javascript:void(0)">LINK2</a></li>
+<li><a href="javascript:void(0)">LINK3</a></li>
+</ul>
+</div><!-- /.drawer -->
+<div class="popup hidden UShadow1" id="popup1" data-trait="dropdown.width.height">
+<ul class="popup-menu">
+<li><a href="javascript:void(0)">LINK 1</a></li>
+<li><a href="javascript:void(0)">LINK 2</a></li>
+<li><a href="javascript:void(0)">LINK 3</a></li>
+</ul>
+</div><!-- /.popup -->
+<div class="toast success UShadow1 hidden" id="toast1" data-trait="notice">
+<p>何かが成功しました。</p>
+<button type="button" class="link" data-trait-connect="#toast1">OK</button>
+</div><!-- /.toast -->
+<div class="toast failure UShadow1 hidden" id="toast2" data-trait="notice">
+<p>何かが失敗しました。</p>
+<button type="button" class="link" data-trait-connect="#toast2">OK</button>
+</div><!-- /.toast -->
+<script>
+$(document).ready(function () {
+    $.trait({itemSelector:'.expand-pane'});
+});
+</script>
+</body>
+</html>
